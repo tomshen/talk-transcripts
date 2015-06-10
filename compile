@@ -1,0 +1,9 @@
+#!/bin/sh
+
+# Run the following command in every subdirectory:
+find ./ -iname "*.md" -type f -exec sh -c 'pandoc -H ../headers.tex --latex-engine=xelatex -V geometry:margin=1in "${0}" -o "${0%.md}.pdf"' {} \;
+
+# README.pdf files will be generated, but you can just delete these. The
+# headers.tex file is to make sure image files with multiple periods in
+# their names are handled correctly. xelatex is used to handle Unicode
+# characters (which pdflatex doesn't for some reason).
